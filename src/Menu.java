@@ -60,7 +60,25 @@ public class Menu implements ActionListener {
 			frame.pack();
 		}
 		if(combo.getSelectedItem().equals("Decimal") && combo2.getSelectedItem().equals("Binary")) {
-			label.setText("ERROR ERROR");
+			int[] binaryNum = new int[1000];
+			String s = textBox.getText();
+	        	int n = Integer.parseInt(s);
+	        int i = 0;
+	        while (n > 0) 
+	        {
+	            binaryNum[i] = n % 2;
+	            n = n / 2;
+	            i++;
+	        }
+	        String[] output = new String[1000];
+	        for(int m = 0; m < binaryNum.length; m++) {
+	        		output[m] = binaryNum[m]+"";
+	        }
+	        String p = "";
+	        for (int j = i - 1; j >= 0; j--) {
+	        		p += output[j];
+	        }
+	        label.setText(p);
 			frame.pack();
 		}
 		if(combo.getSelectedItem().equals("Decimal") && combo2.getSelectedItem().equals("Hexadecimal")) {
@@ -68,7 +86,16 @@ public class Menu implements ActionListener {
 			frame.pack();
 		}
 		if(combo.getSelectedItem().equals("Binary") && combo2.getSelectedItem().equals("Decimal")) {
-			label.setText("ERROR ERROR");
+			String bin = textBox.getText();
+			bin = bin.trim();
+			int output = 0;
+			for (int i = 0; i < bin.length(); i++) {
+				if(bin.charAt(i) == '1') {
+					output += Math.pow(2, bin.length()-1-i);
+				}
+				
+			}
+			label.setText(output+"");
 			frame.pack();
 		}
 		if(combo.getSelectedItem().equals("Binary") && combo2.getSelectedItem().equals("Hexadecimal")) {
@@ -76,7 +103,23 @@ public class Menu implements ActionListener {
 			frame.pack();
 		}
 		if(combo.getSelectedItem().equals("Hexadecimal") && combo2.getSelectedItem().equals("Binary")) {
-			label.setText("ERROR ERROR");
+			String hex = textBox.getText();
+			String bin = "";
+		    String binFragment = "";
+		    int iHex;
+		    hex = hex.trim();
+		    hex = hex.replaceFirst("0x", "");
+
+		    for(int i = 0; i < hex.length(); i++){
+		        iHex = Integer.parseInt(""+hex.charAt(i),16);
+		        binFragment = Integer.toBinaryString(iHex);
+
+		        while(binFragment.length() < 4){
+		            binFragment = "0" + binFragment;
+		        }
+		        bin += binFragment;
+		    }
+		    label.setText(bin);
 			frame.pack();
 		}
 		if(combo.getSelectedItem().equals("Hexadecimal") && combo2.getSelectedItem().equals("Decimal")) {
